@@ -1,0 +1,24 @@
+#%% define function to check duplicate column
+def repeat(list):
+    dups = {}
+    for i, val in enumerate(list):
+        if val not in dups:
+            dups[val] = [i, 1]  # Store index of first occurrence and occurrence value
+        else:
+            if dups[val][1] == 1:  # Special case
+                list[dups[val][0]] += str(dups[val][1])
+
+            dups[val][1] += 1
+            list[i] += str(dups[val][1])
+    return list
+	
+# Check for duplicate name and rename
+row_value = repeat(row_val)
+
+'''
+What it does:
+* take a list of variable in and check if there is a duplicated var
+* If there exist such var, it will rename the var by adding a number to the end of var's name
+Downsize:
+* It will return a list of variable and need to be added back to the dataframe if necessary. This will need to be process through another function and might lost its original position in the dataframe
+'''
